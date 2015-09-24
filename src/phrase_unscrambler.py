@@ -1,7 +1,15 @@
 from trie import Trie
 
-
 trie = Trie()
+
+
+
+
+
+
+
+
+
 
 #populate trie
 f = open( '../mpos/mobypos.txt', 'r' )
@@ -16,3 +24,8 @@ for line in f:
 #sanity check
 print trie.contains_word( 'active' ) 
 
+#inp = raw_input( "Enter scrambled characters: " )
+#inp = inp.lower()
+
+
+print trie.build_words( 'fearthegoat', trie.root )

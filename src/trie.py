@@ -30,6 +30,27 @@ class Trie:
             if letter not in cur.pos:
                 cur.pos.append( letter )
 
+    def build_phrases( self, scrambled ):
+        words = self.build_words( scrambled, self.root )
+
+    def build_words( self, scrambled, cur ):
+        words = []
+        cur_word = ""
+
+        if cur.data is not None:
+            if cur.data in scrambled:
+                scrambled = scrambled.replace( cur.data, "" )
+                cur_word += cur.data
+            else:
+                return words
+        
+        for next in cur.next:
+            words.extend( [ cur_word + str for str in self.build_words( scrambled, cur.next[next] ) ] )
+
+        if cur.eow:
+            words.append( cur.data )
+
+        return words
 
     def contains_word( self, word ):
         cur = self.root
