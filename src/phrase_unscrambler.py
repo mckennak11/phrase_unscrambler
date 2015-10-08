@@ -28,4 +28,13 @@ print trie.contains_word( 'active' )
 #inp = inp.lower()
 
 
-print trie.build_words( 'fearthegoat', trie.root )
+words = trie.build_words( 'fearthegoat', trie.root )
+print words
+print "\n\n\n"
+
+
+print trie.build_phrases( words, 'fearthegoat' )
+
+
+
+
