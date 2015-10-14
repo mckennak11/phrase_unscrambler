@@ -58,7 +58,8 @@ class Trie:
                 elif len( rem_letters ) == 0:
                     full_phrase = True
                     phrases.append( word ) 
-   
+                    phrases.append( [] )
+  
         return phrases, full_phrase
 
     def build_words( self, scrambled, cur ):
@@ -108,11 +109,13 @@ class Trie:
             return True, cur.pos
 
         return False
+  
+    def get_pos( self, word ):
+        cur = self.root
 
-        
-
-
-
+        for letter in word:
+            cur = cur.next[ letter ]
+        return cur.pos
 
 
 
