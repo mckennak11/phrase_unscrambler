@@ -1,0 +1,14 @@
+To fix:
+
+Dictionary missing:
+   a
+   I
+
+
+Add levels of complexity to parser
+
+
+Limitations:
+Prepositional/conjunctive phrases (or phrases in general)
+verbs!
+“Thine” is not archaic?

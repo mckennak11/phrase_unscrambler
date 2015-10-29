@@ -1,0 +1,20 @@
+A: adjective
+N: noun
+P: plural
+
+v: adverb
+V: verb
+R: simple present
+s: simple past
+
+T: present participle
+t: past participle
+
+r: pronoun
+P: preposition
+C: conjuction
+
+D: definite article
+I: indefinite article
+S: spoken contraction (slang)
+!: interjection
