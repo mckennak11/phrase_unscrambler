@@ -6,9 +6,11 @@ Dictionary missing:
 
 
 Add levels of complexity to parser
-
+   Level 0 : std
+   Level 1 : 2+ length noun phrase
 
 Limitations:
 Prepositional/conjunctive phrases (or phrases in general)
 verbs!
 “Thine” is not archaic?
+“School house rock” adverbs

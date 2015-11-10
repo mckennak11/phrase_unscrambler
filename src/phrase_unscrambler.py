@@ -56,7 +56,7 @@ def read_dict( file, trie ):
                             print word
                     elif line[1][0] == 'N':
                         #plural
-                        trie.add_word( word, 'P' )
+                        trie.add_word( word, 'p' )
                     elif line[1][0] == 'A':
                         trie.add_word( word, 'A' )
 

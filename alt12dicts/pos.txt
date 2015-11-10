@@ -1,6 +1,6 @@
 A: adjective
 N: noun
-P: plural
+p: plural
 
 v: adverb
 V: verb
@@ -14,7 +14,39 @@ r: pronoun
 P: preposition
 C: conjuction
 
-D: definite article
-I: indefinite article
+D: definite article (the)
+I: indefinite article (a/an)
 S: spoken contraction (slang)
 !: interjection
+
+dogs run
+#dog run
+
+a good dog - I,A,N
+an orange cat
+the good dog - D,A,N
+the good dogs - D,A,p
+walk the dog - V,D,N
+walk the dogs - V,D,p
+walk a dog - V,I,N
+quickly run around - v,V,P
+around the dog - P,D,N
+around the dogs - P,D,p
+she walks dogs - r,T,p
+she runs around - r,T,P
+oh! a dog - !,I,N
+oh! the dog - !,D,N
+oh! the dogs - !,d,p
+oh! orange cats - !,A,p
+#oh! run, quickly! - !,V,v
+#oh! quickly, run! - !,v,V
+run and jump - V,C,V
+ran and jumped - s,C,s
+#a spoken contract - I,t,N
+#the spoken contracts - D,t,N
+dogs run around - p,V,P
+the dogs ran - D,p,s
+the dogs run - D,p,s
+the dog runs - D,N,T
+big dog party - A,N,N
+

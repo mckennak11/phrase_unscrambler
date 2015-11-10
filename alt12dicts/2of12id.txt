@@ -11955,7 +11955,7 @@ dizzy V: dizzied  dizzying  dizzies
 djellaba N: djellabas
 djellabah N: djellabahs
 djinn N: djinns (djinn)
-do N: dos (-do's)
+-do N: dos (-do's)
 do V: did (@didst) doing  does (@dost @doth)
 done t:
 doable A:

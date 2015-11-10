@@ -1,0 +1,46 @@
+
+
+### The grammar used by the parser (for reference only); Uses the POS tags listed in 
+###    alt12dicts/pos.txt
+Phrase:
+    ### Noun Phrase: One or more nouns: dog; peanut butter; peanut butter sandwich
+    NP:
+        N+
+
+    ### Descriptive Phrase: NP led by one or more adjectives:
+    ###    big dog; big blue dog; creamy peanut butter
+    DP:
+        A+ NP
+
+    ### Descriptive-Verb Phrase: Verb led by one or more adjectives:
+    ###    good run; good, long run
+    DVP:
+        A+ (V|R)
+
+    ### Subject-Verb Phrase:
+
+    ### Present Verb Phrase: A combination of (simple) present verbs and adverbs
+    VVP:
+        v? (V|R) v? |
+        v? (V|R)+ |
+        (V|R)+ v?
+
+    ### Past Verb Phrase: A combination of (simple) past-tense verbs and adverbs
+    PVP:
+        v? s v?
+
+    ### Past Participle Verb Phrase: A combination of past participle verbs, adverbs, and
+    ###    prepositions
+    PPVP:
+        v? t |
+        t v?
+
+    ### Present Participle Verb Phrase: A combination of present participle verbs and 
+    ###    adverbs
+    VPVP:
+        v? T v?
+
+    ### Interjections always lead a phrase; Yay! Peanut butter
+    IP:
+        ! Phrase
+    
