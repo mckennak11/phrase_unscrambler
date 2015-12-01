@@ -1,0 +1,52 @@
+# To insert a new test:
+#    On separate lines, enter scrambled phrase and one expected phrase.
+#    Tests should be led by a ‘:’
+#    In general, as phrases are added to the parser, a new test is added here.
+# Tests take a very long time to run, so try to reuse old test cases when possible.
+
+:
+ieframn
+fireman
+fire man
+:
+oodgdgo
+good dog
+:
+oodgdgoatc
+good cat dog
+:
+oodgurn
+good run
+:
+oodgonglurn
+good long run
+:
+uiyqcklurn
+quickly run
+run quickly
+:
+uiyqcklurnastf
+quickly run fast
+:
+uiyqcklurnumpj
+quickly run jump
+run jump quickly
+:
+uiyqcklarn
+quickly ran
+ran quickly
+:
+uiyqckloespkn
+quickly spoken
+spoken quickly
+:
+uiyqcklusrn
+quickly runs
+runs quickly
+:
+uiyqcklusrnfsta
+quickly runs fast
+:
+oodgdgooh
+oh good dog
+

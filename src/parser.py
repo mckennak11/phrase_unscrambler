@@ -16,6 +16,8 @@ class Parser:
     #            grammatical, resp
     ##################################################
     def parse_tokens( self, tokens, type=None ):
+        ret = False
+
         ### Identify the possible types of phrases
         if type == None:
             ##########################################
@@ -23,18 +25,18 @@ class Parser:
             #    Noun Phrase
             ##########################################
             if 'N' in tokens[ 0 ]:
-                return self.parse_tokens( tokens, 'NP' )
+                ret |= self.parse_tokens( tokens, 'NP' )
 
             ##########################################
             # Phrase may be:
             #    Descriptive Phrase
             #    Descriptive Verb Phrase
             ##########################################
-            elif 'A' in tokens[ 0 ]:
+            if 'A' in tokens[ 0 ]:
                 if self.parse_tokens( tokens, 'DP' ):
                     return True
                 else:
-                    return self.parse_tokens( tokens, 'VP' )
+                    ret |= self.parse_tokens( tokens, 'VP' )
 
             ##########################################
             # Phrase may be:
@@ -43,7 +45,7 @@ class Parser:
             #    Past Participle Verb Phrase
             #    Present Participle Verb Phrase
             ##########################################
-            elif 'v' in tokens[ 0 ] or 'V' in tokens[ 0 ] or 'R' in tokens[ 0 ] or 's' in tokens[ 0 ] or \
+            if 'v' in tokens[ 0 ] or 'V' in tokens[ 0 ] or 'R' in tokens[ 0 ] or 's' in tokens[ 0 ] or \
                     't' in tokens[ 0 ] or 'T' in tokens[ 0 ]:
                 if self.parse_tokens( tokens, 'VVP' ):
                     return True
@@ -52,20 +54,22 @@ class Parser:
                 elif self.parse_tokens( tokens, 'PPVP' ):
                     return True
                 else:
-                    return self.parse_tokens( tokens, 'VPVP' ) 
+                    ret |= self.parse_tokens( tokens, 'VPVP' ) 
 
             ##########################################
             # Phrase may be:
             #    Interjection Phrase
             ##########################################
-            elif '!' in tokens[ 0 ]:
-                return self.parse_tokens( tokens[0:] )
+            if '!' in tokens[ 0 ]:
+                ret |= self.parse_tokens( tokens[1:] )
 
         ##############################################
         # Noun Phrase
-        #    N+
+        #    N N?
         ##############################################
         elif type == 'NP':
+            if len( tokens ) > 2:
+                return False
             for tok in tokens:
                 if 'N' not in tok:
                     return False
@@ -73,24 +77,31 @@ class Parser:
 
         ##############################################
         # Descriptive Phrase
-        #    A+ NP
+        #    A A? NP
         ##############################################
         elif type == 'DP':
+            pos = 0
             for tok in tokens:
-                if 'A' not in tok:
-                    return self.parse_tokens( tokens, 'NP' )
+                if 'A' in tok:
+                    pos += 1
+                    if pos > 2:
+                        return False
+                else:
+                    return self.parse_tokens( tokens[pos:], 'NP' )
             return False
 
         ##############################################
         # Descriptive Verb Phrase
-        #    A+ (V|R)
+        #    A A? (V|R)
         ##############################################
         elif type == 'DVP':
-            len = 0
+            length = 0
             for tok in tokens:
-                len+=1
-                if 'A' not in tok:
-                    if len( tokens ) == len and ( 'V' in tok or 'R' in tok ):
+                length+=1
+                if 'A' in tok and length > 1:
+                    return False
+                else:
+                    if len( tokens ) == length and ( 'V' in tok or 'R' in tok ):
                         return True
                     return False
             return False
@@ -107,13 +118,13 @@ class Parser:
                 ### followed by one or more simple verbs
                 if len( tokens ) < 2:
                     return False
-                len = 1
-                for tok in tokens[0:]:
+                length = 1
+                for tok in tokens[1:]:
                     if 'V' in tok or 'R' in tok:
-                        len+=1
+                        length+=1
                     ### if followed by an adverb, must have only been one verb
                     elif 'v' in tok:
-                        if len == 1 and len( tokens ) == len+1:
+                        if length == 2 and len( tokens ) == length+1:
                             return True
                         return False
                     else:
@@ -122,11 +133,11 @@ class Parser:
             ### Zero adverbs at beginning
             elif 'V' in tokens[ 0 ] or 'R' in tokens[ 0 ]:
                 ### followed by zero or more simple verbs and zero or one adverb at the end
-                    len = 1
-                    for tok in tokens[0:]:
+                    length = 1
+                    for tok in tokens[1:]:
                         if 'V' in tok or 'R' in tok:
-                            len += 1
-                        elif 'v' in tok and len( tokens ) == len+1:
+                            length += 1
+                        elif 'v' in tok and len( tokens ) == length+1:
                             return True
                         else:
                             return False
@@ -143,7 +154,7 @@ class Parser:
                 ### Followed by exactly one past tense verb
                 if len( tokens ) < 2 or 's' not in tokens[ 1 ]:
                     return False
-                ### Followed by zero or more adverbs
+                ### Followed by zero or one adverbs
                 if len( tokens ) == 2:
                     return True
                 if 'v' in tokens[ 2 ] and len( tokens ) == 3:
@@ -201,7 +212,7 @@ class Parser:
                     return True
             return False
 
-        return False
+        return ret
 
 
 

@@ -5,17 +5,17 @@
 Phrase:
     ### Noun Phrase: One or more nouns: dog; peanut butter; peanut butter sandwich
     NP:
-        N+
+        N N?
 
     ### Descriptive Phrase: NP led by one or more adjectives:
     ###    big dog; big blue dog; creamy peanut butter
     DP:
-        A+ NP
+        A A? NP
 
     ### Descriptive-Verb Phrase: Verb led by one or more adjectives:
     ###    good run; good, long run
     DVP:
-        A+ (V|R)
+        A A? (V|R)
 
     ### Subject-Verb Phrase:
 
